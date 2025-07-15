@@ -6,7 +6,6 @@ const envSchema = z.object({
   PORT: z.string(),
   NODE_ENV: z.string(),
   LOCALE: z.string(),
-  PRODUCTION_URL: z.string(),
   CLIENT_BASE_URL: z.string().url(),
   DATABASE_HOST: z.string(),
   DATABASE_PORT: z.string(),
