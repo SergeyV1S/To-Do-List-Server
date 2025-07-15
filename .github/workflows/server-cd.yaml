@@ -5,7 +5,6 @@ env:
   PORT: ${{ secrets.PORT }}
   NODE_ENV: prod
   LOCALE: false
-  PRODUCTION_URL: ${{ secrets.PRODUCTION_URL }}
   CLIENT_BASE_URL: ${{ secrets.CLIENT_BASE_URL }}
   DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
   DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
@@ -50,7 +49,6 @@ jobs:
             PORT=${{ env.PORT }}
             LOCALE=${{ env.LOCALE }}
             NODE_ENV=${{ env.NODE_ENV }}
-            PRODUCTION_URL=${{ env.PRODUCTION_URL }}
             CLIENT_BASE_URL=${{ env.CLIENT_BASE_URL }}
             DATABASE_HOST=${{ env.DATABASE_HOST }}
             DATABASE_PORT=${{ env.DATABASE_PORT }}
@@ -89,7 +87,6 @@ jobs:
           PORT=${{ env.PORT }}
           LOCALE=${{ env.LOCALE }}
           NODE_ENV=${{ env.NODE_ENV }}
-          PRODUCTION_URL=${{ env.PRODUCTION_URL }}
           CLIENT_BASE_URL=${{ env.CLIENT_BASE_URL }}
           DATABASE_HOST=${{ env.DATABASE_HOST }}
           DATABASE_PORT=${{ env.DATABASE_PORT }}

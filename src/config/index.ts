@@ -10,8 +10,7 @@ export default {
     name: env.APPNAME,
     isProduction,
     isLocale,
-    port: env.PORT || 8080,
-    productionUrl: env.PRODUCTION_URL || `localhost:${env.PORT}`
+    port: env.PORT || 8080
   },
   cors: {
     origin: ["http://localhost:8080", "http://127.0.0.1:8080", env.CLIENT_BASE_URL],
