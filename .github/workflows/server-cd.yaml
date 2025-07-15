@@ -110,6 +110,4 @@ jobs:
               docker compose pull express-app
               docker compose up -d --no-deps express-app
             fi
-            
-            docker system prune -f -a
           EOF
