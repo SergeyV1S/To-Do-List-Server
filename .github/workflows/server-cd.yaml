@@ -103,7 +103,7 @@ jobs:
             cd ${{ secrets.PATH_TO_PROJECT }}
             chmod 600 .env
             
-            if [ ! "$(docker ps -q -f name=db)" ]; then
+            if [ ! "$(docker ps -q -f name=todo-db-1)" ]; then
               docker compose pull
               docker compose up -d
             else
