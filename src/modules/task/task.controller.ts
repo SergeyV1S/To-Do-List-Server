@@ -8,6 +8,12 @@ import type { IGetTasksParams } from "./types";
 
 import * as taskService from "./task.service";
 
+/**
+ * Получает список задач с возможностью фильтрации
+ * @param req - Запрос с query-параметрами для фильтрации
+ * @param res - Ответ сервера
+ * @param next - Функция для передачи ошибок в обработчик ошибок
+ */
 export async function getTasks(
   req: Request<object, object, object, IGetTasksParams>,
   res: Response,
@@ -15,13 +21,18 @@ export async function getTasks(
 ): Promise<void> {
   try {
     const result = await taskService.getTasks(req.query);
-
     sendResponse(res, HttpStatus.OK, result);
   } catch (error) {
     next(error);
   }
 }
 
+/**
+ * Получает задачу по её уникальному идентификатору
+ * @param req - Запрос с параметром uid в URL
+ * @param res - Ответ сервера
+ * @param next - Функция для передачи ошибок в обработчик ошибок
+ */
 export async function getTaskByUid(
   req: Request<{ uid: string }>,
   res: Response,
@@ -35,6 +46,12 @@ export async function getTaskByUid(
   }
 }
 
+/**
+ * Создаёт новую задачу
+ * @param req - Запрос с телом, содержащим данные для создания задачи
+ * @param res - Ответ сервера
+ * @param next - Функция для передачи ошибок в обработчик ошибок
+ */
 export async function createTask(
   req: Request<object, object, ICreateTaskDto>,
   res: Response,
@@ -48,6 +65,12 @@ export async function createTask(
   }
 }
 
+/**
+ * Обновляет существующую задачу
+ * @param req - Запрос с телом, содержащим данные для обновления задачи
+ * @param res - Ответ сервера
+ * @param next - Функция для передачи ошибок в обработчик ошибок
+ */
 export async function updateTask(
   req: Request<object, object, IUpdateTaskDto>,
   res: Response,
@@ -61,6 +84,12 @@ export async function updateTask(
   }
 }
 
+/**
+ * Удаляет задачу по её уникальному идентификатору
+ * @param req - Запрос с параметром uid в URL
+ * @param res - Ответ сервера
+ * @param next - Функция для передачи ошибок в обработчик ошибок
+ */
 export async function deleteTask(
   req: Request<{ uid: string }>,
   res: Response,
