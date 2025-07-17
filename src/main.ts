@@ -26,7 +26,6 @@ export const init = (async () => {
 
   app.use("/api", router);
 
-  // Security settings
   app.disable("x-powered-by");
   app.disable("etag");
   app.use((_req: Request, res: Response, next: NextFunction) => {

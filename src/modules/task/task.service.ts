@@ -8,6 +8,11 @@ import { HttpStatus } from "@/utils/enums/http-status";
 import type { ICreateTaskDto, IUpdateTaskDto } from "./dto/create-task.dto";
 import type { IGetTasksParams } from "./types";
 
+/**
+ * Получает список задач с возможностью фильтрации
+ * @param params - Параметры фильтрации и сортировки задач
+ * @returns Промис с массивом задач, соответствующих критериям фильтрации
+ */
 export const getTasks = async (params: IGetTasksParams) => {
   try {
     const conditions = [];
@@ -40,6 +45,11 @@ export const getTasks = async (params: IGetTasksParams) => {
   }
 };
 
+/**
+ * Получает задачу по её уникальному идентификатору
+ * @param uid - Уникальный идентификатор задачи
+ * @returns Промис с найденной задачей или undefined, если задача не найдена
+ */
 export const getTaskByUID = async (uid: string) => {
   try {
     const [task] = await db.select().from(tasks).where(eq(tasks.uid, uid));
@@ -49,6 +59,11 @@ export const getTaskByUID = async (uid: string) => {
   }
 };
 
+/**
+ * Создаёт новую задачу
+ * @param createTaskDto - DTO для создания задачи
+ * @throws {CustomError} 409 - Если задача с таким uid уже существует
+ */
 export const createTask = async (createTaskDto: ICreateTaskDto) => {
   try {
     const tryTask = await db.select().from(tasks).where(eq(tasks.uid, createTaskDto.uid));
@@ -67,6 +82,12 @@ export const createTask = async (createTaskDto: ICreateTaskDto) => {
   }
 };
 
+/**
+ * Обновляет существующую задачу
+ * @param dto - DTO для обновления задачи (должен содержать uid задачи)
+ * @returns Промис с объектом, содержащим uid обновлённой задачи
+ * @throws {CustomError} 400 - Если задача с указанным uid не найдена
+ */
 export const updateTask = async (dto: IUpdateTaskDto) => {
   try {
     const { uid, ...updateDto } = dto;
@@ -85,6 +106,10 @@ export const updateTask = async (dto: IUpdateTaskDto) => {
   }
 };
 
+/**
+ * Удаляет задачу по её уникальному идентификатору
+ * @param uid - Уникальный идентификатор задачи для удаления
+ */
 export const deleteTask = async (uid: string) => {
   try {
     await db.delete(tasks).where(eq(tasks.uid, uid));
